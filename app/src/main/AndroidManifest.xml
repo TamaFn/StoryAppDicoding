@@ -21,6 +21,9 @@
         android:theme="@style/Theme.StoryAppDicoding"
         tools:targetApi="31">
         <activity
+            android:name=".view.main.MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.camera.CameraActivity"
             android:exported="false" />
         <activity
@@ -39,7 +42,7 @@
             android:name=".view.detail.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.MainActivity"
+            android:name=".view.splashscreen.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

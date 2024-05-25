@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">StoryAppDicoding</string>
 
-<!-- Global -->
+    <!-- Global -->
     <string name="name">Name</string>
     <string name="login">Login</string>
     <string name="signup">Register</string>
@@ -15,8 +15,7 @@
     <string name="imageinfo">Add Your Image</string>
 
 
-
-<!-- Login -->
+    <!-- Login -->
     <string name="login_title">Ready to explore the world?</string>
     <string name="login_message">Please fill in your data here</string>
     <string name="message_main_page">Welcome to Dicoding StoryApp</string>
@@ -24,7 +23,7 @@
     <string name="logout">Sign Out</string>
     <string name="retry">Run Again</string>
 
-<!-- Welcome  -->
+    <!-- Welcome  -->
 
     <string name="email_login">Enter your email</string>
     <string name="email_wrong">Wrong email format</string>
@@ -45,7 +44,7 @@
     <string name="refresh">Refresh</string>
     <string name="changeLanguage">Change Language</string>
 
-<!-- Detail String -->
+    <!-- Detail String -->
     <string name="detail_username">Firefly\n</string>
     <string name="detail_user_description">"Lorem ipsum dolor sit amet consectetur. Molestie vel ultrices diam tempus semper sit tincidunt eget blandit. Cras faucibus mattis tortor ut facilisi ullamcorper. Condimentum lectus elit nulla congue. In blandit purus maecenas quis risus volutpat habitant. Integer egestas arcu nunc netus sed lorem porttitor quis. "</string>
     <string name="detail_user_date">25 May 2024</string>
