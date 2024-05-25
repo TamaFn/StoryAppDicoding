@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.storyappdicoding.data.remote.response.StoryItem
 import com.example.storyappdicoding.databinding.ItemStoryBinding
+import com.example.storyappdicoding.utils.getTimeAgo
+import com.example.storyappdicoding.utils.getTimeMillisFromString
 import com.example.storyappdicoding.utils.withDateFormat
 
 class StoryAdapter: ListAdapter<StoryItem, StoryAdapter.ViewHolder>(DIFF_CALLBACK) {
@@ -44,6 +46,7 @@ class StoryAdapter: ListAdapter<StoryItem, StoryAdapter.ViewHolder>(DIFF_CALLBAC
                     .into(ivItemPhoto)
                 tvItemName.text = data.name
                 tvDate.text = data.createdAt?.withDateFormat()
+                binding.tvTime.text = getTimeAgo(itemView.context, getTimeMillisFromString(data.createdAt.toString()))
             }
 
         }

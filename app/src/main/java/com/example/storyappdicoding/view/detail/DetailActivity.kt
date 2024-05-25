@@ -8,8 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.storyappdicoding.R
 import com.example.storyappdicoding.data.Result
-import com.example.storyappdicoding.data.remote.response.StoryItem
 import com.example.storyappdicoding.databinding.ActivityDetailBinding
+import com.example.storyappdicoding.utils.getTimeAgo
+import com.example.storyappdicoding.utils.getTimeMillisFromString
 import com.example.storyappdicoding.utils.withDateFormat
 import com.example.storyappdicoding.view.ViewModelFactory
 
@@ -33,7 +34,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun actionBar() {
         setSupportActionBar(binding.detailToolbar)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.button_back)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.btn_back)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
@@ -55,6 +56,7 @@ class DetailActivity : AppCompatActivity() {
                         binding.detailUserName.text = story.name
                         binding.detailTime.text = story.createdAt?.withDateFormat()
                         binding.detailUserDescription.text = story.description
+                        binding.detailHistoryTime.text = getTimeAgo(binding.root.context, getTimeMillisFromString(result.data.createdAt.toString()))
                     }
                     supportActionBar?.title = getString(R.string.detail_title, story.name)
                 }

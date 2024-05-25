@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_bg"
     tools:context=".view.main.MainActivity">
 
     <androidx.constraintlayout.widget.Guideline
@@ -32,31 +33,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/navy"
-        app:titleTextColor="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/main_menu" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/main_menu"
+        app:titleTextColor="@color/white" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh_swap"
-        android:layout_width="395dp"
-        android:layout_height="655dp"
+        android:layout_width="386dp"
+        android:layout_height="672dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.794">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_story"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingHorizontal="8dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="80dp"
             tools:listitem="@layout/item_story" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
@@ -64,10 +64,10 @@
     <ProgressBar
         android:id="@+id/main_progressbar"
         style="?android:attr/progressBarStyle"
-        android:visibility="gone"
-        android:indeterminate="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,12 +79,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:clickable="true"
+        android:contentDescription="Upload Story"
         app:backgroundTint="@color/navy"
-        app:tint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/btn_add"
-        android:contentDescription="Upload Story" />
+        app:tint="#FFFFFF" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
