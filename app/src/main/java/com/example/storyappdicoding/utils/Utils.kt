@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.net.Uri
 import androidx.exifinterface.media.ExifInterface
+import com.example.storyappdicoding.R
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -14,6 +15,8 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.TimeZone
+import java.util.concurrent.TimeUnit
 
 private const val MAXIMAL_SIZE = 1000000
 private const val FILENAME_FORMAT = "dd-MMM-yyyy"
@@ -21,6 +24,7 @@ private val timeStamp: String = SimpleDateFormat(
     FILENAME_FORMAT,
     Locale.US
 ).format(Date())
+private const val TIMESTAMP_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 
 //  Fungsi ini digunakan untuk membuat file gambar sementara di direktori cache eksternal aplikasi
 fun createCustomTempFile(context: Context): File {
@@ -84,4 +88,34 @@ fun String.withDateFormat(): String {
     val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
     val date = format.parse(this) as Date
     return DateFormat.getDateInstance(DateFormat.FULL).format(date)
+}
+
+fun getTimeMillisFromString(dateTimeString: String): Long {
+    val sdf = SimpleDateFormat(TIMESTAMP_PATTERN)
+    sdf.timeZone = TimeZone.getTimeZone("UTC")
+    val date = sdf.parse(dateTimeString) as Date
+    return date.time
+}
+
+fun getTimeAgo(context: Context, timeMillis: Long): String {
+    val now = System.currentTimeMillis()
+    val diffMillis = now - timeMillis
+
+    val seconds = TimeUnit.MILLISECONDS.toSeconds(diffMillis)
+    val minutes = TimeUnit.MILLISECONDS.toMinutes(diffMillis)
+    val hours = TimeUnit.MILLISECONDS.toHours(diffMillis)
+    val days = TimeUnit.MILLISECONDS.toDays(diffMillis)
+    val weeks = days / 7
+    val months = days / 30
+    val years = days / 365
+
+    return when {
+        seconds < 60 -> context.getString(R.string.seconds_ago, seconds)
+        minutes < 60 -> context.getString(R.string.minutes_ago, minutes)
+        hours < 24 -> context.getString(R.string.hours_ago, hours)
+        days < 7 -> context.getString(R.string.days_ago, days)
+        weeks < 4 -> context.getString(R.string.weeks_ago, weeks)
+        months < 12 -> context.getString(R.string.months_ago, months)
+        else -> context.getString(R.string.years_ago, years)
+    }
 }

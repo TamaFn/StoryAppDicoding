@@ -4,19 +4,16 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main">#f4d53e</color>
     <color name="main_dark">#2E2A10</color>
-
     <color name="transparant">#7C000000</color>
     <color name="white_dark">#FAFAFA</color>
-
-    <color name="orange">#FF5F00</color>
     <color name="navy">#2D3D4F</color>
     <color name="gray">#7D7C7C</color>
     <color name="description">#ECE3CE</color>
-
     <color name="bg">#ECE3CE</color>
     <color name="bg2">#F8F4EF</color>
     <color name="green0">#ACBAAC</color>
     <color name="green1">#739072</color>
     <color name="green2">#4F6F52</color>
     <color name="green3">#3A4D39</color>
+    <color name="main_bg">#E3E1D9</color>
 </resources>

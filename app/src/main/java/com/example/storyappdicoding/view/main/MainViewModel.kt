@@ -23,14 +23,6 @@ class MainViewModel(
         refreshData()
     }
 
-    fun getAllStory() = _refresh.switchMap {
-        storyRepository.getAllStory()
-    }
-
-    fun refreshData() {
-        _refresh.value = Unit
-    }
-
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()
     }
@@ -40,4 +32,14 @@ class MainViewModel(
             repository.userLogout()
         }
     }
+
+    fun getAllStory() = _refresh.switchMap {
+        storyRepository.getAllStory()
+    }
+
+    fun refreshData() {
+        _refresh.value = Unit
+    }
+
+
 }

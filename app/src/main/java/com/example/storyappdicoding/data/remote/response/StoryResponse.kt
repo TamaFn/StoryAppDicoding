@@ -18,7 +18,6 @@ data class StoryResponse(
 
 data class StoryItem(
 
-    @PrimaryKey
     @field:SerializedName("id")
     val id: String,
 

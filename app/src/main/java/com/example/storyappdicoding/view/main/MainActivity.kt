@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.storyappdicoding.R
 import com.example.storyappdicoding.databinding.ActivityMainBinding
@@ -37,14 +38,18 @@ class MainActivity : AppCompatActivity() {
         checkSession()
         setAdapter()
         setRefresh()
-        getRecycle()
         setUpViewModel()
         onClickCallback()
         uploadImage()
     }
 
     private fun setAdapter(){
+        val layoutManager = LinearLayoutManager(this)
+        binding.rvStory.layoutManager = layoutManager
+        val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
+        binding.rvStory.addItemDecoration(itemDecoration)
         storyAdapter = StoryAdapter()
+        binding.rvStory.adapter = storyAdapter
     }
 
     private fun uploadImage(){
@@ -79,15 +84,6 @@ class MainActivity : AppCompatActivity() {
             viewModel.refreshData()
         }
     }
-
-    private fun getRecycle() {
-        binding.rvStory.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            setHasFixedSize(true)
-            adapter = storyAdapter
-        }
-    }
-
 
     private fun setUpViewModel(){
         viewModel.getAllStory().observe(this) { result ->

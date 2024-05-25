@@ -13,7 +13,6 @@ import com.example.storyappdicoding.R
 class CVPassword: AppCompatEditText, View.OnTouchListener {
 
     private var isValid = false
-    private lateinit var isSame: String
 
     constructor(
         context: Context
