@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">StoryAppDicoding</string>
+
+<!-- Global -->
+    <string name="name">Name</string>
+    <string name="login">Login</string>
+    <string name="signup">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="description">Description</string>
+
+    <string name="message_welcome_page">Lets Explore the World and Share your experience with the others</string>
+    <string name="title_welcome_page">Welcome to Story App</string>
+    <string name="title_signup_page">Please fill up your data in here</string>
+    <string name="imageinfo">Add Your Image</string>
+
+
+
+<!-- Login -->
+    <string name="login_title">Ready to explore the world?</string>
+    <string name="login_message">Please fill in your data here</string>
+    <string name="message_main_page">Welcome to Dicoding StoryApp</string>
+    <string name="greeting">Hello %1$s,</string>
+    <string name="logout">Sign Out</string>
+    <string name="retry">Run Again</string>
+
+<!-- Welcome  -->
+
+    <string name="email_login">Enter your email</string>
+    <string name="email_wrong">Wrong email format</string>
+    <string name="email_taken">The email you entered is already registered, please change your email</string>
+    <string name="failed_register">Registration failed, please try again</string>
+
+    <string name="password_login">Enter your password</string>
+    <string name="password_confirm">Confirm your password</string>
+    <string name="password_visible">Show Password</string>
+    <string name="password_less">Password must be at least 8 characters</string>
+    <string name="password_NotMatch">Passwords don\'t match</string>
+    <string name="password_AccountWrong">The password you entered is incorrect</string>
+
+    <string name="register_name_title">Name</string>
+    <string name="register_email_title">Email</string>
+    <string name="register_password_title">Password</string>
+    <string name="login_cv_email">Email</string>
+    <string name="refresh">Refresh</string>
+    <string name="changeLanguage">Change Language</string>
+
+<!-- Detail String -->
+    <string name="detail_username">Firefly\n</string>
+    <string name="detail_user_description">"Lorem ipsum dolor sit amet consectetur. Molestie vel ultrices diam tempus semper sit tincidunt eget blandit. Cras faucibus mattis tortor ut facilisi ullamcorper. Condimentum lectus elit nulla congue. In blandit purus maecenas quis risus volutpat habitant. Integer egestas arcu nunc netus sed lorem porttitor quis. "</string>
+    <string name="detail_user_date">25 May 2024</string>
+
+    <string name="upload_description">Add you description here</string>
+    <string name="gallery">Gallery\n</string>
+    <string name="camera">Camera</string>
+    <string name="Upload">Upload\n</string>
+
+    <string name="no_image_selected">No image selected</string>
+    <string name="upload_image_description">Add text here</string>
+    <string name="detail_title">%1$s Story</string>
+
+
+</resources>
