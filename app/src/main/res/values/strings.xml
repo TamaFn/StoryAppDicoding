@@ -59,6 +59,7 @@
     <string name="detail_title">%1$s Story</string>
 
 
+    <!--  Time String  -->
     <string name="seconds_ago">%1$d seconds ago</string>
     <string name="minutes_ago">%1$d minutes ago</string>
     <string name="hours_ago">%1$d hours ago</string>
@@ -67,6 +68,15 @@
     <string name="months_ago">%1$d months ago</string>
     <string name="years_ago">%1$d years ago</string>
     <string name="detail_history_time">13 minutes ago</string>
+    <string name="title_activity_maps">MapsActivity</string>
+
+    <!--  Maps String  -->
+    <string name="maps">Maps</string>
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satellite</string>
+    <string name="terrain_type">Terrain</string>
+    <string name="hybrid_type">Hybrid</string>
+    <string name="start_point">Kamu disini</string>
 
 
 </resources>

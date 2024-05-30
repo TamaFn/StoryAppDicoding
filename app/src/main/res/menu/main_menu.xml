@@ -10,6 +10,12 @@
         android:title="">
         <menu>
             <item
+                android:id="@+id/maps"
+                android:icon="@drawable/ic_location"
+                android:iconTint="@color/black"
+                android:title="@string/maps"
+                app:showAsAction="never" />
+            <item
                 android:id="@+id/logout"
                 android:icon="@drawable/btn_logout"
                 android:iconTint="@color/black"

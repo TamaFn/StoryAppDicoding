@@ -7,6 +7,7 @@ import com.example.storyappdicoding.di.Injection
 import com.example.storyappdicoding.view.detail.DetailViewModel
 import com.example.storyappdicoding.view.login.LoginViewModel
 import com.example.storyappdicoding.view.main.MainViewModel
+import com.example.storyappdicoding.view.maps.MapsViewModel
 import com.example.storyappdicoding.view.register.RegisterViewModel
 import com.example.storyappdicoding.view.upload.UploadViewModel
 
@@ -30,6 +31,9 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.NewInst
             }
             modelClass.isAssignableFrom(UploadViewModel::class.java) -> {
                 UploadViewModel(Injection.provideStoryRepository(context)) as T
+            }
+            modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
+                MapsViewModel(Injection.provideStoryRepository(context)) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

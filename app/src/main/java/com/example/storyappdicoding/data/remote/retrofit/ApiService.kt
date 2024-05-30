@@ -34,6 +34,8 @@ interface ApiService {
         @Query("page") page: Int = 1,
 //      Untuk menentukan jumlah item per halaman.
         @Query("size") size: Int = 30,
+//      Untuk menentukan lokasi maps
+        @Query("location") location: Int = 0
     ) : StoryResponse
 
 

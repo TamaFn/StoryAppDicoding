@@ -20,6 +20,7 @@ import com.example.storyappdicoding.view.upload.UploadActivity
 import com.example.storyappdicoding.view.welcome.WelcomeActivity
 import com.example.storyappdicoding.data.Result
 import com.example.storyappdicoding.data.remote.response.StoryItem
+import com.example.storyappdicoding.view.maps.MapsActivity
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel> {
@@ -113,6 +114,12 @@ class MainActivity : AppCompatActivity() {
             R.id.logout -> {
                 viewModel.logout()
                 val intent = Intent(this, WelcomeActivity::class.java)
+                startActivity(intent)
+                finish()
+                true
+            }
+            R.id.maps -> {
+                val intent = Intent(this, MapsActivity::class.java)
                 startActivity(intent)
                 finish()
                 true

@@ -68,6 +68,18 @@ class StoryRepository private constructor(
         }
     }
 
+    fun getLocationStory(): LiveData<Result<List<StoryItem>>> = liveData {
+        emit(Result.Loading)
+        try {
+            val token = userPreference.getToken().first()
+            val response = apiService.listStory("Bearer $token", location = 1)
+            val result = response.listStory
+            emit(Result.Success(result))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
 
     companion object {
         @Volatile
