@@ -23,6 +23,7 @@ import com.example.storyappdicoding.utils.reduceFileImage
 import com.example.storyappdicoding.utils.uriToFile
 import com.example.storyappdicoding.view.ViewModelFactory
 import com.example.storyappdicoding.view.camera.CameraActivity
+import com.example.storyappdicoding.view.camera.CameraActivity.Companion.CAMERAX_RESULT
 import com.example.storyappdicoding.view.main.MainActivity
 
 class UploadActivity : AppCompatActivity() {
@@ -57,7 +58,7 @@ class UploadActivity : AppCompatActivity() {
     private val launcherIntentCameraX = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        if (it.resultCode == Activity.RESULT_OK) {
+        if (it.resultCode == CAMERAX_RESULT) {
             currentImageUri = it.data?.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)?.toUri()
             showImage()
         }

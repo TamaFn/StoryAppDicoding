@@ -114,9 +114,8 @@ class CameraActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val photoUri = output.savedUri ?: Uri.fromFile(photoFile)
                     val intent = Intent()
-                    intent.putExtra(EXTRA_CAMERAX_IMAGE, photoUri.toString())
+                    intent.putExtra(EXTRA_CAMERAX_IMAGE, output.savedUri.toString())
                     setResult(CAMERAX_RESULT, intent)
                     finish()
                 }

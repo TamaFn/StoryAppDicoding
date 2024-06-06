@@ -1,6 +1,7 @@
 package com.example.storyappdicoding.di
 
 import android.content.Context
+import com.example.storyappdicoding.data.local.database.StoryDatabase
 import com.example.storyappdicoding.data.local.pref.UserPreference
 import com.example.storyappdicoding.data.local.pref.dataStore
 import com.example.storyappdicoding.data.remote.retrofit.ApiConfig
@@ -12,15 +13,14 @@ import kotlinx.coroutines.runBlocking
 object Injection {
     fun provideAuthRepository(context: Context): UserRepository {
         val pref = UserPreference.getInstance(context.dataStore)
-        val user = runBlocking { pref.getUser() }
-        val apiService = ApiConfig.getApiService(user.token)
+        val apiService = ApiConfig.getApiService()
         return UserRepository.getInstance(apiService, pref)
     }
 
     fun provideStoryRepository(context: Context): StoryRepository {
         val pref = UserPreference.getInstance(context.dataStore)
-        val user = runBlocking { pref.getUser() }
-        val apiService = ApiConfig.getApiService(user.token)
-        return StoryRepository.getInstance(apiService, pref)
+        val database = StoryDatabase.getDatabase(context)
+        val apiService = ApiConfig.getApiService()
+        return StoryRepository.getInstance(apiService, pref, database)
     }
 }

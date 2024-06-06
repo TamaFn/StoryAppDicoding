@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.storyappdicoding.R
@@ -20,6 +21,7 @@ import com.example.storyappdicoding.view.upload.UploadActivity
 import com.example.storyappdicoding.view.welcome.WelcomeActivity
 import com.example.storyappdicoding.data.Result
 import com.example.storyappdicoding.data.remote.response.StoryItem
+import com.example.storyappdicoding.view.adapter.LoadingStateAdapter
 import com.example.storyappdicoding.view.maps.MapsActivity
 
 class MainActivity : AppCompatActivity() {
@@ -39,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         checkSession()
         setAdapter()
         setRefresh()
-        setUpViewModel()
         onClickCallback()
         uploadImage()
     }
@@ -49,8 +50,25 @@ class MainActivity : AppCompatActivity() {
         binding.rvStory.layoutManager = layoutManager
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.rvStory.addItemDecoration(itemDecoration)
+
+
+
         storyAdapter = StoryAdapter()
-        binding.rvStory.adapter = storyAdapter
+        binding.rvStory.adapter = storyAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                storyAdapter.retry()
+            }
+        )
+        viewModel.story.observe(this) {
+            storyAdapter.submitData(lifecycle, it)
+        }
+        storyAdapter.addLoadStateListener { loadState ->
+            if (loadState.refresh is LoadState.NotLoading) {
+                binding.refreshSwap.isRefreshing = false
+            } else if (loadState.refresh is LoadState.Loading) {
+                binding.refreshSwap.isRefreshing = true
+            }
+        }
     }
 
     private fun uploadImage(){
@@ -83,24 +101,6 @@ class MainActivity : AppCompatActivity() {
     private fun setRefresh() {
         binding.refreshSwap.setOnRefreshListener {
             viewModel.refreshData()
-        }
-    }
-
-    private fun setUpViewModel(){
-        viewModel.getAllStory().observe(this) { result ->
-            when (result) {
-                is Result.Error-> {
-                    showLoading(false)
-                    Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
-                    binding.refreshSwap.isRefreshing = false
-                }
-                is Result.Loading -> { showLoading(true) }
-                is Result.Success -> {
-                    showLoading(false)
-                    storyAdapter.submitList(result.data)
-                    binding.refreshSwap.isRefreshing = false
-                }
-            }
         }
     }
 

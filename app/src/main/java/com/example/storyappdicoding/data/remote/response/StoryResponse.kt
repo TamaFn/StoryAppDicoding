@@ -16,8 +16,10 @@ data class StoryResponse(
     val message: String? = null
 )
 
+@Entity(tableName = "story")
 data class StoryItem(
 
+    @PrimaryKey
     @field:SerializedName("id")
     val id: String,
 

@@ -2,6 +2,7 @@ package com.example.storyappdicoding.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +13,7 @@ import com.example.storyappdicoding.utils.getTimeAgo
 import com.example.storyappdicoding.utils.getTimeMillisFromString
 import com.example.storyappdicoding.utils.withDateFormat
 
-class StoryAdapter: ListAdapter<StoryItem, StoryAdapter.ViewHolder>(DIFF_CALLBACK) {
+class StoryAdapter: PagingDataAdapter<StoryItem, StoryAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     private var onItemClickCallback: OnItemClickCallback? = null
 
@@ -31,7 +32,9 @@ class StoryAdapter: ListAdapter<StoryItem, StoryAdapter.ViewHolder>(DIFF_CALLBAC
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val story = getItem(position)
-        holder.storyData(story)
+        if (story != null) {
+            holder.storyData(story)
+        }
     }
 
     inner class ViewHolder(private val binding: ItemStoryBinding):

@@ -2,8 +2,15 @@ package com.example.storyappdicoding.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.example.storyappdicoding.data.Result
+import com.example.storyappdicoding.data.local.database.StoryDatabase
 import com.example.storyappdicoding.data.local.pref.UserPreference
+import com.example.storyappdicoding.data.paging.StoryRemoteMediator
 import com.example.storyappdicoding.data.remote.response.StoryItem
 import com.example.storyappdicoding.data.remote.response.UploadResponse
 import com.example.storyappdicoding.data.remote.retrofit.ApiService
@@ -17,20 +24,21 @@ import java.io.File
 
 class StoryRepository private constructor(
     private val apiService: ApiService,
-    private val userPreference: UserPreference
+    private val userPreference: UserPreference,
+    private val storyDatabase: StoryDatabase
 ) {
-    fun getAllStory(
-
-    ): LiveData<Result<List<StoryItem>>> = liveData {
-        emit(Result.Loading)
-        try {
-            val token = userPreference.getToken().first()
-            val response = apiService.listStory("Bearer $token")
-            val result = response.listStory
-            emit(Result.Success(result))
-        } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
-        }
+    fun getAllStory(): LiveData<PagingData<StoryItem>> {
+        @OptIn(ExperimentalPagingApi::class)
+        val pager = Pager(
+            config = PagingConfig(
+                pageSize = 5
+            ),
+            remoteMediator = StoryRemoteMediator(storyDatabase, userPreference, apiService),
+            pagingSourceFactory = {
+                storyDatabase.storyDao().getAllStories()
+            }
+        )
+        return pager.liveData
     }
 
     fun getDetailStory(
@@ -86,10 +94,11 @@ class StoryRepository private constructor(
         private var instance: StoryRepository? = null
         fun getInstance(
             apiService: ApiService,
-            userPreference: UserPreference
+            userPreference: UserPreference,
+            storyDatabase : StoryDatabase
         ): StoryRepository =
             instance ?: synchronized(this) {
-                instance ?: StoryRepository(apiService, userPreference)
+                instance ?: StoryRepository(apiService, userPreference, storyDatabase)
             }.also { instance = it }
     }
 }

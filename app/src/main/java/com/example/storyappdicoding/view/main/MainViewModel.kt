@@ -6,18 +6,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import com.example.storyappdicoding.data.local.pref.UserModel
+import com.example.storyappdicoding.data.remote.response.StoryItem
 import com.example.storyappdicoding.data.repository.UserRepository
 import com.example.storyappdicoding.data.repository.StoryRepository
 import kotlinx.coroutines.launch
+import androidx.paging.cachedIn
 
 class MainViewModel(
     private val storyRepository: StoryRepository,
     private val repository: UserRepository
 ) : ViewModel() {
 
-    private val _refresh = MutableLiveData<Unit>()
-    val refresh: LiveData<Unit> = _refresh
+    private val refresh = MutableLiveData<Unit>()
 
     init {
         refreshData()
@@ -33,13 +35,11 @@ class MainViewModel(
         }
     }
 
-    fun getAllStory() = _refresh.switchMap {
-        storyRepository.getAllStory()
+    val story: LiveData<PagingData<StoryItem>> = refresh.switchMap {
+        storyRepository.getAllStory().cachedIn(viewModelScope)
     }
 
     fun refreshData() {
-        _refresh.value = Unit
+        refresh.value = Unit
     }
-
-
 }
